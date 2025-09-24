@@ -1,4 +1,3 @@
-
 // Name:    Alexander San Agustin-Melendez
 // Class:   CS3305/04
 // Term:    Fall 2025
@@ -9,8 +8,7 @@
 import java.util.Scanner;
 
 public class TestMyStack {
-    private static int inputValidation() {
-        Scanner sc = new Scanner(System.in);
+    private static int inputValidation(Scanner sc) {
         //  Start a loop that will not end on its own.
         while (true) {
             String input = sc.nextLine();
@@ -26,9 +24,9 @@ public class TestMyStack {
     }
 
     // ==== Option 1 =====
-    private static void handlePushRequest(MyStack<Integer> list){
+    private static void handlePushRequest(MyStack<Integer> list, Scanner sc){
         System.out.print("Please enter a value: ");
-        int data = inputValidation();
+        int data = inputValidation(sc);
 
         // Displaying information before adding node
         System.out.println("\nPushing value " + data + " in stack");
@@ -37,12 +35,12 @@ public class TestMyStack {
             System.out.println("The stack is empty before pushing the element.");
         }
         else{
-            System.out.print("Stack content before pushing " + data +" is: \t");
+            System.out.print("Stack content before pushing " + data +" is:\t\t");
             list.printStack(); // printing list before adding node
         }
         list.push(data); // call function
 
-        System.out.print("\nStack content after pushing " + data +" is: \t");
+        System.out.print("\nStack content after pushing " + data +" is:\t\t");
         list.printStack(); // Prints the list after adding the node
         System.out.println();
     }
@@ -50,11 +48,11 @@ public class TestMyStack {
     // === Option 2 ===
     private static void handlePopRequest(MyStack<Integer> list) {
         if(!handleIsEmpty(list)){ // Checks first that stack is not empty, for every function
-            System.out.print("\nStack content before popping first element: \t");
+            System.out.print("\nStack content before popping first element:\t\t");
             list.printStack();
             list.pop();
             System.out.println();
-            System.out.print("Stack content after popping first element: \t");
+            System.out.print("Stack content after popping first element:\t\t");
             list.printStack();
             System.out.println();
         }
@@ -112,18 +110,19 @@ public class TestMyStack {
     }
 
     public static void main(String[] args){
+        Scanner sc = new Scanner (System.in);
         MyStack<Integer> myList = new MyStack<>();
         int menuOption = 0;
 
         // === Menu Loop ===
         while(menuOption != 7){
             displayMenu();
-            menuOption = inputValidation();
+            menuOption = inputValidation(sc);
             System.out.println();
 
             switch (menuOption){
                 case 1:
-                    handlePushRequest(myList);
+                    handlePushRequest(myList, sc);
                     break;
                 case 2:
                     handlePopRequest(myList);
@@ -136,7 +135,7 @@ public class TestMyStack {
                     break;
                 case 5:
                     if(!handleIsEmpty(myList)){
-                        // I decided to put it here because other functions used this one and I dont want it to print this every time the function is called
+                        // I decided to put it here because other functions used this one and I don't want it to print this every time the function is called
                         System.out.println("Stack is not empty");
                     }
                     break;

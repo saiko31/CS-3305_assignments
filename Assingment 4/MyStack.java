@@ -8,9 +8,10 @@
 public class MyStack <E>{
 
     private Node ListName;
-    int size;
+    private int size;
 
     public MyStack(){
+        ListName = null;
         size = 0;
     }
 
@@ -22,12 +23,23 @@ public class MyStack <E>{
       size++;
     }
 
-    public void pop(){
+    public E pop(){
+        if(isEmpty()){
+            throw new IllegalStateException("Empty stack");
+        }
+
+        E data = ListName.data;
         ListName = ListName.next;
         size--;
+        return data;
     } // Removes element at the top
 
-    public E top(){return ListName.data;} // Returns the element at the top
+    public E top(){
+        if(isEmpty()){
+            throw new IllegalStateException("Empty Stack");
+        }
+        return ListName.data;
+    } // Returns the element at the top
 
     public int size(){return this.size;} // Returns size
 
@@ -39,15 +51,22 @@ public class MyStack <E>{
         temp = ListName;
         while (temp != null)
         {
-            System.out.print(temp.data + "   ");
+            System.out.print(temp.data + "   "); // This spacing is for printing list of numbers, when other types, the printing format logic will be handled by
             temp = temp.next;
         }
 //      System.out.println();
     }
 
+
+    // Method used to clear the stack in ReverseString, when the user wants to enter a new string
+    public void emptyStack(){
+        ListName = null;
+        size = 0;
+    }
+
     private class Node
     {
-        private E data;  //data field
+        private final E data;  //data field
         private Node next; //link field
 
         public Node(E item) //constructor method
