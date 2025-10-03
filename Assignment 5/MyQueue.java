@@ -1,3 +1,10 @@
+// Name:    Alexander San Agustin-Melendez
+// Class:   CS3305/04
+// Term:    Fall 2025
+// Instructor:  Maxwell Bradley
+// Assignment:  5
+// IDE Name:    IntelliJ IDEA
+
 public class MyQueue <E>{
 
     private Node head;
