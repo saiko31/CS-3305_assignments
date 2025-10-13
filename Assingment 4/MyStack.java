@@ -28,6 +28,7 @@ public class MyStack <E>{
             throw new IllegalStateException("Empty stack");
         }
 
+
         E data = ListName.data;
         ListName = ListName.next;
         size--;
