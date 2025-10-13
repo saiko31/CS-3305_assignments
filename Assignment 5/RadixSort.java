@@ -1,6 +1,11 @@
+// Name:    Alexander San Agustin-Melendez
+// Class:   CS3305/04
+// Term:    Fall 2025
+// Instructor:  Maxwell Bradley
+// Assignment:  5
+// IDE Name:    IntelliJ IDEA
+
 import java.util.*;
-
-
 public class RadixSort {
 
     // =============== UTILITIES ==========================
@@ -33,13 +38,14 @@ public class RadixSort {
     }
 
     private static void radixSort(int[] inputs){
-        int n = inputs.length;
+
+        int maxDigits = 0;
         //Finding the biggest number of digits to determine the number of passes
-        int max = 0;
         for(int i: inputs){
-            int current = CountDigits(i);
-            if(current > max) max = current;
+           int currDigits = CountDigits(i);
+           if(currDigits > maxDigits) maxDigits = currDigits;
         }
+
 
         List<MyQueue<Integer>> queues = new ArrayList<>();
         // Initializing 10 queues for digits 0-9
@@ -47,17 +53,16 @@ public class RadixSort {
             queues.add(new MyQueue<>());
         }
 
-        while(max > 0){
-            for(int i  = 0; i < n; i++){
+        int divisor = 1;
+        for(int i = 0; i < maxDigits; i++){
+            //Placing numbers into the appropriate queue
+            for(int num : inputs){
                 //Extracting digit
-                int digit = ExtractDigit(inputs[i]);
-                //Adding i to respective queue
-                queues.get(digit).enqueue(inputs[i]);
-                //Updating i
-                inputs[i] /= 10;
+                int digit = ExtractDigit(num, divisor);
+                queues.get(digit).enqueue(num);
             }
 
-            //Extracting numbers
+            //Extracting numbers back into the array
             int index = 0;
             for(MyQueue<Integer> q : queues){
                 while(!q.isEmpty()){
@@ -67,12 +72,12 @@ public class RadixSort {
 
                 q.printStack(); // for debug
             }
-            max--;
+            divisor *= 10;
         }
 
     }
 
-    private static int ExtractDigit(int n){return n%10;}
+    private static int ExtractDigit(int n, int div){return (n/div)%10;}
 
     private static int CountDigits(int n){
         int count = 0;
@@ -87,9 +92,18 @@ public class RadixSort {
     // ================ MENU OPTIONS ======================
     private static int[] handleArraySize(Scanner sc){
         System.out.print("Please enter an array size: ");
-        int size = inputValidation(sc);
+        // This loop prevents the user from attempting to create an array of size 0
+        while (true){
+            int size = inputValidation(sc);
+            if(size != 0){
+                return new int[size];
+            }
+            else {
+                System.out.println("Cannot create an array of size 0.");
+                System.out.print("Please enter an array size: ");
+            }
+        }
 
-        return new int[size];
     }
 
     private static void handleArrayVolumes(int[] array, Scanner sc){
@@ -101,17 +115,23 @@ public class RadixSort {
                 System.out.println();
             }
         }
+        else{
+            System.out.println("The array has not been initialized (Option 1).");
+        }
     }
 
     private static void handleRadixSort(int[] inputs){
-        if(inputs.length != 0){
-            System.out.print("Array values before sorting:\t\t");
+        if(inputs != null && inputs.length != 0){
+            System.out.print("Array values before sorting:\t");
             printArray(inputs);
             System.out.println();
             radixSort(inputs);
             System.out.print("Array values after sorting:\t\t");
             printArray(inputs);
             System.out.println();
+        }
+        else{
+            System.out.println("The array is empty!");
         }
 
     }
@@ -147,11 +167,6 @@ public class RadixSort {
                 case 3:
                     handleRadixSort(inputs);
                     break;
-                case 5:
-                    System.out.println(ExtractDigit(7/10)); // for debugging
-                    break;
-                case 6:
-                    ExtractDigit(788961);
                 case 4:
                     break;
                 default:
