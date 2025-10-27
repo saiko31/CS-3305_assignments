@@ -129,7 +129,6 @@ public class MyTestBST {
                             String input = strInputValidation(sc);
 
                             System.out.print("BST before inserting " + input + " (Inorder):\t");
-                            assert strBST != null;
                             strBST.inorder();
 
                             if(!strBST.insert(input)){
@@ -166,7 +165,6 @@ public class MyTestBST {
                             String input = strInputValidation(sc);
 
                             System.out.print("BST before deleting " + input + " (Inorder):\t");
-                            assert strBST != null;
                             strBST.inorder();
                             System.out.println();
 
@@ -259,40 +257,46 @@ public class MyTestBST {
                     break;
                 case 7:
                     System.out.println("Testing method Preorder Traversal (Option 7)");
+
                     if(!noTree(treeType)){
+
+                        System.out.print("Preorder: ");
                         if(treeType == 1){
-                            System.out.print("Preorder: ");
-                            intTree.preorder();
+                            if(intTree.isEmpty()) System.out.print("Empty Tree.");
+                            else intTree.preorder();
                         }
                         if(treeType == 2){
-                            System.out.print("Preorder: ");
-                            strBST.preorder();
+                            if(strBST.isEmpty()) System.out.print("Empty Tree.");
+                            else strBST.preorder();
                         }
                     }
                     break;
                 case 8:
                     System.out.println("Testing method Inorder Traversal (Option 8)");
                     if(!noTree(treeType)){
+
+                        System.out.print("Inorder: ");
                         if(treeType == 1){
-                            System.out.print("Inorder: ");
-                            intTree.inorder();
+                            if(intTree.isEmpty()) System.out.print("Empty Tree.");
+                            else intTree.inorder();
                         }
                         if(treeType == 2){
-                            System.out.print("Inorder: ");
-                            strBST.inorder();
+                            if(strBST.isEmpty()) System.out.print("Empty Tree.");
+                            else strBST.inorder();
                         }
                     }
                     break;
                 case 9:
                     System.out.println("Testing method Postorder Traversal (Option 9)");
                     if(!noTree(treeType)){
+                        System.out.print("Postorder: ");
                         if(treeType == 1){
-                            System.out.print("Postorder: ");
-                            intTree.postorder();
+                            if(intTree.isEmpty()) System.out.print("Empty Tree.");
+                            else intTree.postorder();
                         }
                         if(treeType == 2){
-                            System.out.print("Postorder: ");
-                            strBST.postorder();
+                            if(strBST.isEmpty()) System.out.print("Empty Tree.");
+                            else strBST.postorder();
                         }
                     }
                     break;
