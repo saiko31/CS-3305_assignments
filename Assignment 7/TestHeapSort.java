@@ -1,7 +1,14 @@
 // Class TestHeapSort.java 
 // Textbook - Listing 23.9, Page 878
 
-public class TestHeapSort { 
+// Name:    Alexander San Agustin-Melendez
+// Class:   CS3305/04
+// Term:    Fall 2025
+// Instructor:  Maxwell Bradley
+// Assignment:  7
+// IDE Name:    IntelliJ IDEA
+
+public class TestHeapSort {
    /** A test method */
    public static void main(String[] args) {
       Integer[] list = {-44, -5, -3, 3, 3, 1, -4, 0, 1, 2, 4, 5, 53};
