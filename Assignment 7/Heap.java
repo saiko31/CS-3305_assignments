@@ -1,8 +1,23 @@
 // Class Heap.java 
 // Textbook - Listing 23.9, Page 878
 
+
+
+// Name:    Alexander San Agustin-Melendez
+// Class:   CS3305/04
+// Term:    Fall 2025
+// Instructor:  Maxwell Bradley
+// Assignment:  7
+// IDE Name:    IntelliJ IDEA
+
+import java.util.ArrayList;
+
 public class Heap<E extends Comparable<E>> {
   private java.util.ArrayList<E> list = new java.util.ArrayList<E>();
+
+  // HEAP MAX CAPACITY
+  int CAPACITY = 100;
+
 
   /** Create a default heap */
   public Heap() {
@@ -77,4 +92,18 @@ public class Heap<E extends Comparable<E>> {
   public int getSize() {
     return list.size();
   }
+
+
+
+    /** ADDITIONAL METHODS */
+    // Get the root element from the heap
+     public E getFront(){
+         if(list.size() == 0) return null;
+         return list.get(0);
+     }
+
+     //Returns arraylist for printing purposes
+     public ArrayList<E> getList(){
+         return list;
+     }
 }
